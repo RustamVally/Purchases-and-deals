@@ -32,4 +32,34 @@ public class FlatManager {
         items.add(item);
         return item;
     }
+
+    public Flat update(Flat item) {
+        final int index = findIndexById(item.getId());
+        if (index == -1) {
+            // TODO: Exception (элемент не найден)
+            return null;
+        }
+        items.set(index, item);
+        return item;
+    }
+
+    public Flat deleteById(long id) {
+        final int index = findIndexById(id);
+        if (index == -1) {
+            return null;
+        }
+        return items.remove(index);
+    }
+
+
+    private int findIndexById(long id) {
+        int index = 0;
+        for (Flat item : items) {
+            if (item.getId() == id) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
 }

@@ -38,4 +38,16 @@ public class FlatController {
     public Flat add(@ModelAttribute Flat item) {
         return manager.add(item);
     }
+
+    // TODO: http://localhost:9999/update?id=2&name=Flat&price=4420000&rooms=3&streets=Chistaya%20Nigmatullina
+    @RequestMapping("/update")
+    public Flat update(@ModelAttribute Flat item) {
+        return manager.update(item);
+    }
+
+    // TODO: http://localhost:9999/deleteById?id=1
+    @RequestMapping("/deleteById")
+    public Flat deleteById(@RequestParam long id) {
+        return manager.deleteById(id);
+    }
 }
