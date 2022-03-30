@@ -18,6 +18,15 @@ public class FlatManager {
         return items.subList(fromIndex, toIndex);
     }
 
+    public Flat getById(long id) {
+        for (Flat item : items) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public Flat add(Flat item) {
         item.setId(nextId++);
         items.add(item);

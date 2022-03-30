@@ -27,6 +27,11 @@ public class FlatController {
         return manager.getPage(page);
     }
 
+    // TODO: http://localhost:9999/getById?id=1
+    @RequestMapping("/getById")
+    public Flat getById(@RequestParam long id) {
+        return manager.getById(id);
+    }
 
     // TODO: http://localhost:9999/add?id=0&name=Flat&price=1000000&rooms=3&streets=Krasnaya&streets=Belaya
     @RequestMapping("/add")
