@@ -1,6 +1,8 @@
 ###
 
-POST http://localhost:8080/media/bytes
+POST http://localhost:9999/media/bytes
 Content-Type: image/jpeg
 
 < car.jpg
+
+###

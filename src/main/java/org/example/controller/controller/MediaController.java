@@ -1,9 +1,9 @@
 package org.example.controller.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.controller.dto.UploadSingleMediaResponseDTO;
 import org.example.manager.MediaManager;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -11,5 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class MediaController {
     private final MediaManager manager;
 
-    @RequestMapping
+    @PostMapping("/bytes")
+    public UploadSingleMediaResponseDTO upload(@RequestBody byte[] bytes, @RequestHeader("Content-Type") String contentType) {
+        return manager.save(bytes, contentType);
+    }
 }
