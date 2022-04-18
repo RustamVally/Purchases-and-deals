@@ -6,3 +6,34 @@ Content-Type: image/jpeg
 < car.jpg
 
 ###
+http://localhost:9999/62a09b91-9a6b-49d2-b03a-ce81bfd24eb5.jpg
+
+###
+
+POST http://localhost:9999/media/bytes
+Content-Type: image/jpeg
+
+< flat.jpg
+
+###
+
+http://localhost:9999/025f185b-3418-4f91-8846-21a64aeff51d.jpg
+###
+
+POST http://localhost:9999/medeia/multipart
+Content-Type: multipart/form-data; boundary=WebBoundary
+
+--WebBoundary
+Content-Disposition: form-data; name="file"; filename="car.jpg"
+Content-Type: image/jpeg
+
+< car.jpg
+--WebBoundary--
+###
+
+#--WebBoundary
+#Content-Disposition: form-data; name="files"; filename="flat.jpg"
+#Content-Type: image/jpeg
+#
+#< flat.jpg
+#--WebBoundary--
