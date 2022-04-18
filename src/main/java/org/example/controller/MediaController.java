@@ -20,8 +20,14 @@ public class MediaController {
         return manager.save(bytes, contentType);
     }
 
-    // загрузка нескольких файлов
+    //загрузка нескольких файлов
     @PostMapping("/multipart")
+    public UploadSingleMediaResponseDTO upload(@RequestPart MultipartFile file) {
+        return manager.save(file);
+    }
+
+    // загрузка большого количества файлов
+    @PostMapping("/mega-multipart")
     public UploadMultipleMediaResponseDTO upload(@RequestPart List<MultipartFile> files) {
         return manager.save(files);
     }

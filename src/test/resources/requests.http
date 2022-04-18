@@ -29,11 +29,22 @@ Content-Type: image/jpeg
 
 < car.jpg
 --WebBoundary--
+
 ###
 
+#POST http://localhost:9999/medeia/mega-multipart
+#Content-Type: mega-multipart/form-data; boundary=WebBoundary
+#
 #--WebBoundary
-#Content-Disposition: form-data; name="files"; filename="flat.jpg"
+#Content-Disposition: form-data; name="file"; filename="car.jpg"
+#Content-Type: image/jpeg
+#
+#< car.jpg
+#--WebBoundary
+#Content-Disposition: form-data; name="file"; filename="flat.jpg"
 #Content-Type: image/jpeg
 #
 #< flat.jpg
 #--WebBoundary--
+
+###

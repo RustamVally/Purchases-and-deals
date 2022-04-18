@@ -15,10 +15,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+// TODO:
+//  1. Сгенерировать имя и определить расширение
+//  2. Сохранить
 @Component
 public class MediaManager {
     private final Path path = Path.of("media");
-    // расширение
     private final Map<String, String> types = Map.of(
             "image/jpeg", ".jpg",
             "image/png", ".png"
@@ -28,9 +30,10 @@ public class MediaManager {
         Files.createDirectories(path);
     }
 
-    // TODO:
-    //  1. Сгенерировать имя и определить расширение
-    //  2. Сохранить
+    private String generateName(String contentType) {
+        return UUID.randomUUID() + getExtension(contentType);
+    }
+
     public UploadSingleMediaResponseDTO save(byte[] bytes, String contentType) {
         try {
             final String name = generateName(contentType);
@@ -40,11 +43,6 @@ public class MediaManager {
             e.printStackTrace();
             throw new UploadException(e);
         }
-    }
-
-    private String generateName(String contentType) {
-        final String name = UUID.randomUUID() + getExtension(contentType); // имя файла
-        return name;
     }
 
     public UploadSingleMediaResponseDTO save(MultipartFile file) {
@@ -66,7 +64,6 @@ public class MediaManager {
 
         return responseDTO;
     }
-
 
     private String getExtension(String contentType) {
         final String extension = types.get(contentType);
