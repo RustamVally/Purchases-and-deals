@@ -6,6 +6,7 @@ Content-Type: image/jpeg
 < car.jpg
 
 ###
+
 http://localhost:9999/62a09b91-9a6b-49d2-b03a-ce81bfd24eb5.jpg
 
 ###
@@ -18,9 +19,10 @@ Content-Type: image/jpeg
 ###
 
 http://localhost:9999/025f185b-3418-4f91-8846-21a64aeff51d.jpg
+
 ###
 
-POST http://localhost:9999/medeia/multipart
+POST http://localhost:9999/media/multipart
 Content-Type: multipart/form-data; boundary=WebBoundary
 
 --WebBoundary
@@ -32,19 +34,19 @@ Content-Type: image/jpeg
 
 ###
 
-#POST http://localhost:9999/medeia/mega-multipart
-#Content-Type: mega-multipart/form-data; boundary=WebBoundary
-#
-#--WebBoundary
-#Content-Disposition: form-data; name="file"; filename="car.jpg"
-#Content-Type: image/jpeg
-#
-#< car.jpg
-#--WebBoundary
-#Content-Disposition: form-data; name="file"; filename="flat.jpg"
-#Content-Type: image/jpeg
-#
-#< flat.jpg
-#--WebBoundary--
+POST http://localhost:9999/media/mega-multipart
+Content-Type: multipart/form-data; boundary=WebBoundary
+
+--WebBoundary
+Content-Disposition: form-data; name="files"; filename="car.jpg"
+Content-Type: image/jpeg
+
+< car.jpg
+--WebBoundary
+Content-Disposition: form-data; name="files"; filename="flat.jpg"
+Content-Type: image/jpeg
+
+< flat.jpg
+--WebBoundary--
 
 ###

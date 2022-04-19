@@ -22,16 +22,11 @@ import java.util.UUID;
 public class MediaManager {
     private final Path path = Path.of("media");
     private final Map<String, String> types = Map.of(
-            "image/jpeg", ".jpg",
-            "image/png", ".png"
+            "image/jpeg", ".jpg"
     );
-
+    // по желанию можно добавить .png формат в мапу (или mp3, video)
     public MediaManager() throws IOException {
         Files.createDirectories(path);
-    }
-
-    private String generateName(String contentType) {
-        return UUID.randomUUID() + getExtension(contentType);
     }
 
     public UploadSingleMediaResponseDTO save(byte[] bytes, String contentType) {
@@ -51,7 +46,6 @@ public class MediaManager {
             file.transferTo(path.resolve(name));
             return new UploadSingleMediaResponseDTO(name);
         } catch (IOException e) {
-            e.printStackTrace();
             throw new UploadException(e);
         }
     }
@@ -59,10 +53,14 @@ public class MediaManager {
     public UploadMultipleMediaResponseDTO save(List<MultipartFile> files) {
         final UploadMultipleMediaResponseDTO responseDTO = new UploadMultipleMediaResponseDTO(new ArrayList<>(files.size()));
         for (MultipartFile file : files) {
-            responseDTO.getNames().add(save(file).getName());
+            final UploadSingleMediaResponseDTO saved = save(file);
+            responseDTO.getNames().add(saved.getName());
         }
-
         return responseDTO;
+    }
+
+    private String generateName(String contentType) {
+        return UUID.randomUUID() + getExtension(contentType);
     }
 
     private String getExtension(String contentType) {

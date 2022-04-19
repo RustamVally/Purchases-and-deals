@@ -26,7 +26,7 @@ public class MediaController {
         return manager.save(file);
     }
 
-    // загрузка большого количества файлов
+    //загрузка нескольких файлов (выбрать несколько)
     @PostMapping("/mega-multipart")
     public UploadMultipleMediaResponseDTO upload(@RequestPart List<MultipartFile> files) {
         return manager.save(files);
